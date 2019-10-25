@@ -40,11 +40,15 @@ class Maze {
         }
     }
     private int find(int cell, int[] cells) {
-        int cur = cells[cell];
-        while(cells[cur] != cur) {
-            cur = cells[cur];
+        int next = cells[cell];
+        int cur = cell;
+        while(cells[next] != next) {
+            cells[cur] = cells[next];
+            cur = next;
+            next = cells[next];
         }
-        return cur;
+        cells[cur] = next;
+        return next;
     }
     private void union(int a, int b, int[] cells) {
         int agroup = find(a, cells);
