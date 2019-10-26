@@ -92,24 +92,11 @@ public class Maze{
     private void removeWall(int i, int j, int dir) {
         if(i == 0 && dir == 0 || j == 0 && dir == 3) return;
         //System.out.println(dir);
-        switch(dir) {
-            case 0:
-                this.mazeWithWalls[i * 3][j * 3 + 1] = ' ';
-                this.mazeWithWalls[i * 3][j * 3 + 2] = ' ';
-                break;
-            case 1:
-                this.mazeWithWalls[i * 3 + 1][j * 3 + 3] = ' ';
-                this.mazeWithWalls[i * 3 + 2][j * 3 + 3] = ' ';
-                break;
-            case 2:
-                this.mazeWithWalls[i * 3 + 3][j * 3 + 1] = ' ';
-                this.mazeWithWalls[i * 3 + 3][j * 3 + 2] = ' ';
-                break;
-            case 3:
-                this.mazeWithWalls[i * 3 + 1][j * 3] = ' ';
-                this.mazeWithWalls[i * 3 + 2][j * 3] = ' ';
-                break;
-        }
+        int id = dirs[dir][0];
+        int jd = dirs[dir][1];
+        int[][] points = new int[][]{{0, 1},{0, 2}, {1, 3}, {2,3}, {3,2}, {3,1}, {2,0}, {1, 0}};
+        this.mazeWithWalls[i * 3 + points[dir * 2][0]][j * 3 + points[dir * 2][1]] = ' ';
+        this.mazeWithWalls[i * 3 + points[dir * 2 + 1][0]][j * 3 + points[dir * 2 + 1][1]] = ' ';
     }
 
     public static void main(String[] args) {
