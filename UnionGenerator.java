@@ -34,21 +34,10 @@ public class UnionGenerator{
                 int ni = cur / w + dirs[nextDir][0];
                 int nj = cur % w + dirs[nextDir][1];
                 stack.push(ni * w + nj);
-                this.removeWall(cur / w, cur % w, nextDir);
+                maze.removeWall(cur / w, cur % w, nextDir);
                 visited.add(ni * w + nj);
             }
         }
     }
 
-
-    private void removeWall(int i, int j, int dir) {
-        if(i == 0 && dir == 0 || j == 0 && dir == 3) return;
-        //System.out.println(dir);
-        int[][] dirs = maze.dirs;
-        int id = dirs[dir][0];
-        int jd = dirs[dir][1];
-        int[][] points = new int[][]{{0, 1},{0, 2}, {1, 3}, {2,3}, {3,2}, {3,1}, {2,0}, {1, 0}};
-        maze.mazeWithWalls[i * 3 + points[dir * 2][0]][j * 3 + points[dir * 2][1]] = ' ';
-        maze.mazeWithWalls[i * 3 + points[dir * 2 + 1][0]][j * 3 + points[dir * 2 + 1][1]] = ' ';
-    }
 }
